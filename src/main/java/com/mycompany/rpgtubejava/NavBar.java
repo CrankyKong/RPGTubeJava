@@ -29,7 +29,7 @@ public class NavBar {
     navbar += "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>";
     navbar += " <span class='icon-bar'></span>";
     navbar += " <span class='icon-bar'></span><span class='icon-bar'></span></button>"
-            + "<a class='navbar-brand' href='#myPage'>RPGTUBE</a></div>"
+            + "<a class='navbar-brand' href='homepage.jsp'>RPGTUBE</a></div>"
             + "<div class='collapse navbar-collapse' id='myNavbar'>"
             + "<ul class='nav navbar-nav navbar-right'>"
             + "<li><a href='homepage.jsp'>HOME</a></li>"

@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : signup
     Created on : Jul 11, 2016, 10:30:39 PM
     Author     : Logan
 --%>
 
-<%@page import="com.mycompany.rpgtube.NavBar"%>
+<%@page import="com.mycompany.rpgtubejava.NavBar"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
