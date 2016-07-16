@@ -1,2 +1,0 @@
-# RPGTubeJava
-RPGTUBE for Java

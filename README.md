@@ -1,1 +1,2 @@
-# RPGtubeJava
+# RPGTubeJava
+RPGTUBE for Java
