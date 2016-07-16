@@ -25,11 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "dbAccess", urlPatterns = {"/dbAccess"})
 public class dbAccess extends HttpServlet {
  static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   static final String DB_URL = "jdbc:mysql://localhost/home_base";
+   static final String DB_URL = "jdbc:mysql://localhost/rpgtube";
 
    //  Database credentials
-   static final String USER = "root";
-   static final String PASS = "abcde1";
+   static final String USER = "logan";
+   static final String PASS = "pass";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -66,15 +66,19 @@ public class dbAccess extends HttpServlet {
 	out.print("<html><body>");
 	while(rs.next()){
 	   //Retrieve by column name
-	   String personId = rs.getString("name");
-	   String firstName = rs.getString("attribute");
-	   String lastName = rs.getString("picture");
+	   String name = rs.getString("name");
+	   String attribute = rs.getString("attribute");
+	   String picture = rs.getString("picture");
 
 	   //Display values
 	   
-	   out.print("" + personId + "\">" + firstName + " " + lastName + "</a><br/>");
+	   out.print("<p>" + name + " " + attribute + "<img href='" + picture + "'></p><br/>");
 	   
 	}
+        sql = "INSERT INTO user(username, password) VALUES ('Maventest','test');";
+
+	//stmt.executeUpdate(sql);
+        
 	out.print("</body></html>");
 	//STEP 6: Clean-up environment
 	rs.close();
