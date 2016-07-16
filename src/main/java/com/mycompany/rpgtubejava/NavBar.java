@@ -1,4 +1,4 @@
-package com.mycompany.rpgtube;
+package com.mycompany.rpgtubejava;
 
 
 import static java.lang.System.out;

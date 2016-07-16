@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.rpgtube;
+package com.mycompany.rpgtubejava;
 
 import com.mysql.jdbc.Statement;
 import java.io.IOException;

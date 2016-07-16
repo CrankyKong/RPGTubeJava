@@ -1,4 +1,4 @@
-package com.mycompany.rpgtube;
+package com.mycompany.rpgtubejava;
 
 import java.io.IOException;
 import java.io.PrintWriter;
