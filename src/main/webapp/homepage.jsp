@@ -4,7 +4,7 @@
     Author     : Logan
 --%>
 
-<%@page import="com.mycompany.rpgtube.NavBar"%>
+<%@page import="com.mycompany.rpgtubejava.NavBar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
