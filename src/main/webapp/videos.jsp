@@ -1,10 +1,10 @@
-<%-- 
-    Document   : videos
-    Created on : Jul 10, 2016, 5:53:28 PM
-    Author     : Logan
---%>
+<%
+    //Document   : videos
+    //Created on : Jul 10, 2016, 5:53:28 PM
+    //Author     : Logan
+%>
 
-<%@page import="com.mycompany.rpgtube.NavBar"%>
+<%@page import="com.mycompany.rpgtubejava.NavBar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

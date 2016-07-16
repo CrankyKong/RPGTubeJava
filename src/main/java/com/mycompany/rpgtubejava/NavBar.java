@@ -34,7 +34,7 @@ public class NavBar {
             + "<ul class='nav navbar-nav navbar-right'>"
             + "<li><a href='homepage.jsp'>HOME</a></li>"
             + "<li><a href='comingsoon.jsp'>ABOUT RPGTUBE</a></li>"
-            + " <li><a href='videos.jsp'>VIDEOS</a></li>'";
+            + " <li><a href='vidSearch.jsp'>VIDEOS</a></li>'";
        		
 //		//Profile for session
 //		if($_SESSION['user_id'] != 0){
