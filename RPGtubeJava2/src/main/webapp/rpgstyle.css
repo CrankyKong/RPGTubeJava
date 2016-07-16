@@ -1,0 +1,180 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 10, 2016, 9:09:40 PM
+    Author     : Logan
+*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+#rLetter img {
+    z-index: 0;
+    padding: 22px;
+    position: fixed;
+    margin-top: 21.5%;
+    margin-left: 45.5%;
+    width: 75px;
+    height: 75px;
+    background-color: black;
+}
+
+#menu .box {
+    position: fixed;
+    text-align: center;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255,255,255, 0.75);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+#menu ul {
+    position: relative;
+    top: -5%;
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+#menu li {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    margin: 325px;
+    list-style: none;
+    width: 200px;
+    margin-left: 60%;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    text-align: center;
+
+}
+
+#menu li a {
+    border-radius: 3px;
+    padding: 15px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: black;
+    width: 200px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+#menu li a:hover {
+
+    color: red;
+}
+
+#toggle-nav-label {
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    color: black;
+    background: rgba(255,255,255, .25);
+    margin-top: 20%;
+    margin-left: 35%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    display: block;
+    cursor: pointer;
+    z-index: 500;
+    width: 150px;
+    height: 150px;
+    border: 3px solid transparent;
+    position: fixed;
+    border-color: white;
+
+
+}
+
+#toggle-nav-label img {
+
+    z-index: 0;
+    margin-top: 35px;
+    width: 75px;
+    height: 75px;
+}
+
+#toggle-nav-label:hover {
+
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+#toggle-nav {
+
+    display: none;
+}
+
+#toggle-nav:checked ~ .box {
+
+    opacity: 1;
+    border: 0px solid transparent;
+    z-index: 400;
+}
+
+#toggle-nav:checked ~ .box img{
+
+
+    z-index: 0;
+    padding: 22px;
+    position: fixed;
+    margin-top: 21.5%;
+    margin-left: 45.5%;
+    width: 75px;
+    height: 75px;
+}
+
+#toggle-nav:checked ~ .box ul {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+#toggle-nav:checked ~ #toggle-nav-label {
+
+    color: white;
+    background: black;
+    border: 0px;
+
+}
+
+#homeBCK {
+
+    background: url(homepageBack.png) no-repeat;
+     background-attachment: fixed;
+    background-size: cover;
+    background-color: black;
+    top: 0px;
+    left: 0px;
+    margin-top: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    margin-left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -100;
+}
+
