@@ -105,5 +105,37 @@ public class DatabaseHandler {
        
        return avatar;
    }
+   
+   public String getPassword(String username) throws ClassNotFoundException, SQLException{
+       Class.forName("com.mysql.jdbc.Driver");
+       Connection conn = null;
+       Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+	//STEP 4: Execute a query
+	System.out.println("Creating statement...");
+	stmt = (Statement) conn.createStatement();
+	String sql;
+	sql = "SELECT password FROM user where username = '" + username + "';";
+
+	ResultSet rs = stmt.executeQuery(sql);
+        String password = null;
+        
+        while(rs.next()){
+	   //Retrieve by column name
+	   password = rs.getString("password");
+	   
+	}
+        
+        rs.close();
+	stmt.close();
+	conn.close();
+       
+       return password;
+   }
     
 }
