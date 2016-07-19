@@ -4,8 +4,6 @@
     Author     : Logan
 --%>
 
-<%@page import="com.mycompany.rpgtubejava.DatabaseHandler"%>
-<%@page import="com.mycompany.rpgtubejava.Item"%>
 <%@page import="com.mycompany.rpgtubejava.NavBar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,13 +26,6 @@
         <br>
         <br>
         <br>
-        
-       <% DatabaseHandler db = new DatabaseHandler();
-       Item item = new Item();
-       db.getItem(1).display();
-       //item.display();
-       %>
-        
         <h1>Hello World!</h1>
     </body>
 </html>

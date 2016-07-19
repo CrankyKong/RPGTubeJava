@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "AuthCodeHandler", urlPatterns = {"/AuthCodeHandler"})
 public class AuthCodeHandler extends HttpServlet {
+
+    @EJB
+    private SessionHandler sessionHandler;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
@@ -26,7 +30,9 @@ public class AuthCodeHandler extends HttpServlet {
             out.println(requestToken(authCode));
         } else {
             response.sendRedirect("SignIn");
-        }  
+        }
+
+	sessionHandler.dump(out);
     }
 
     private static String requestToken(String authCode) {
