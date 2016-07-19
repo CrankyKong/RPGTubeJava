@@ -26,11 +26,14 @@ import static java.lang.System.out;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.net.HttpURLConnection;
 
 /**
  *
@@ -57,7 +60,7 @@ public class vidSearch extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<body>");
-        out.println("hey");
+      
         try {    
         youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
        
@@ -67,12 +70,12 @@ public class vidSearch extends HttpServlet {
                Properties properties = new Properties();
             String query = request.getParameter("search");
             YouTube.Search.List search = youtube.search().list("id,snippet");
-            out.println("hey");
+            
             String apiKey = properties.getProperty("youtube.apikey");
             
             search.setKey("AIzaSyD8ge2xgrP5RMztFDXKAU7zqMIOxUENdZk");
             search.setQ(query);
-            out.println(query);
+            
             search.setType("video");
             search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
             search.setMaxResults(NOFV);
@@ -83,7 +86,7 @@ public class vidSearch extends HttpServlet {
             if (searchResultList != null ){
                 
                 
-             prettyPrint(searchResultList.iterator(), query, response);
+             prettyPrint(searchResultList.iterator(), query, response,request);
             }
         } catch (GoogleJsonResponseException e) {
             out.println("There was a service error: " + e.getDetails().getCode() + " : "
@@ -134,13 +137,13 @@ public class vidSearch extends HttpServlet {
     }// </editor-fold>
         
     
-     private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query,HttpServletResponse response) throws IOException {
+     private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query,HttpServletResponse response,HttpServletRequest request) throws IOException, ServletException {
          
          PrintWriter out = response.getWriter();
         
         out.println("\n=============================================================");
         out.println(
-                "   First " + NOFV + " videos for search on \"" + query + "\".");
+                "First " + NOFV + " videos for search on \"" + query + "\".");
         out.println("=============================================================\n");
 
         if (!iteratorSearchResults.hasNext()) {
@@ -151,21 +154,35 @@ public class vidSearch extends HttpServlet {
 
             SearchResult singleVideo = iteratorSearchResults.next();
             ResourceId rId = singleVideo.getId();
-
+            
+          
             // Confirm that the result represents a video. Otherwise, the
             // item will not contain a video ID.
             if (rId.getKind().equals("youtube#video")) {
+                
+            //request.setAttribute("videoName", rId.getVideoId());
+            
                 Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
-
-               out.println("<p>");
                
-               out.println("<iframe width=\"420\" height=\"315\""   ); 
-               out.println("src=\"https://www.youtube.com/embed/" +  rId.getVideoId() + "\">");
-               out.println("</iframe>");
+                
+                
+               out.println("<p>");
+                String videoName = rId.getVideoId();
+                
+                HttpSession session = request.getSession();
+                session.setAttribute("videoName", videoName);
+               
                out.println(" Title: " + singleVideo.getSnippet().getTitle());
-               out.println(" Thumbnail: " + thumbnail.getUrl());
+               out.println("<form action =\"xpAdd\" method=\"POST\">");
+               out.println("<a href=\"https://www.youtube.com/watch?v=" + videoName + "\">");
+               out.println("<input type =\"image\" src=\"" + thumbnail.getUrl() + "\">");
+               out.println("<img src=\"" + thumbnail.getUrl() + "\">");
+               out.println("</a>");
+               out.println("</form>");
                out.println("\n-------------------------------------------------------------\n");
                out.println("</p>"); 
+              
+            
             }
         
         }
