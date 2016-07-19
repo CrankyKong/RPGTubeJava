@@ -41,7 +41,7 @@ public class vidSearch extends HttpServlet {
 
     private static YouTube youtube;
 
- private static final long NOFV = 25;
+ private static final long NOFV = 10;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,6 +55,8 @@ public class vidSearch extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        out.println("<html>");
+        out.println("<body>");
         out.println("hey");
         try {    
         youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
@@ -68,7 +70,7 @@ public class vidSearch extends HttpServlet {
             out.println("hey");
             String apiKey = properties.getProperty("youtube.apikey");
             
-            search.setKey(apiKey);
+            search.setKey("AIzaSyD8ge2xgrP5RMztFDXKAU7zqMIOxUENdZk");
             search.setQ(query);
             out.println(query);
             search.setType("video");
@@ -77,8 +79,11 @@ public class vidSearch extends HttpServlet {
             
             SearchListResponse searchResponse = search.execute();
             List<SearchResult> searchResultList = searchResponse.getItems();
+            Iterator<SearchResult> iteratorSearchResults;
             if (searchResultList != null ){
-            prettyPrint(searchResultList.iterator(), query);
+                
+                
+             prettyPrint(searchResultList.iterator(), query, response);
             }
         } catch (GoogleJsonResponseException e) {
             out.println("There was a service error: " + e.getDetails().getCode() + " : "
@@ -129,7 +134,9 @@ public class vidSearch extends HttpServlet {
     }// </editor-fold>
         
     
-     private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
+     private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query,HttpServletResponse response) throws IOException {
+         
+         PrintWriter out = response.getWriter();
         
         out.println("\n=============================================================");
         out.println(
@@ -150,11 +157,21 @@ public class vidSearch extends HttpServlet {
             if (rId.getKind().equals("youtube#video")) {
                 Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
 
-               out.println(" Video Id" + rId.getVideoId());
+               out.println("<p>");
+               
+               out.println("<iframe width=\"420\" height=\"315\""   ); 
+               out.println("src=\"https://www.youtube.com/embed/" +  rId.getVideoId() + "\">");
+               out.println("</iframe>");
                out.println(" Title: " + singleVideo.getSnippet().getTitle());
                out.println(" Thumbnail: " + thumbnail.getUrl());
                out.println("\n-------------------------------------------------------------\n");
+               out.println("</p>"); 
             }
+        
         }
+        out.println("</body>");
+        out.println("</html>");
+     
      }
+    
 }
