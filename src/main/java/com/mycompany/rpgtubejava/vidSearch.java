@@ -195,8 +195,19 @@ public class vidSearch extends HttpServlet {
                //out.println("<img class=\"img-responsive\" src=\"" + thumbnail.getUrl() + "\">");
                out.println("</a>");
                out.println("</form>");
-               out.println("</p>"); 
-              
+               out.println("</p>");
+           
+               out.println("<p>");
+               out.println("<form action =\"vidSearch\" method=\"POST\">");
+               out.println("<input type =\"submit\" name=\"Honor\" value=\"Honor System\"></input>");
+               out.println("</form>");
+               out.println("</p>");
+               out.println("<br>");
+               
+               if(request.getParameter("Honor") != null){
+                   out.println("PUT EXP GETTING FUNCTION HERE");
+               }
+               
                
             
             }
