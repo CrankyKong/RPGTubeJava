@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.HttpURLConnection;
+import com.mycompany.rpgtubejava.NavBar;
 
 /**
  *
@@ -60,6 +61,20 @@ public class vidSearch extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<body>");
+         out.println("<head>");
+        out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+        out.println("<title>Found Youtube videos</title>");
+        out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+	out.println("<link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">");
+	out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js\"></script>");
+	out.println("<script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>");
+	out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/style.css\">");
+        out.println("<link href=\'https://fonts.googleapis.com/css?family=Quicksand\' rel=\'stylesheet\' type=\'text/css\'>");   
+        out.println("</head>");
+        
+        NavBar navbar = new NavBar(); 
+        String displayme = navbar.display(); 
+        out.println(displayme);
       
         try {    
         youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
@@ -171,15 +186,16 @@ public class vidSearch extends HttpServlet {
                 
                 HttpSession session = request.getSession();
                 session.setAttribute("videoName", videoName);
+               out.println("<br>");
+               out.println("<br>");
                
-               out.println(" Title: " + singleVideo.getSnippet().getTitle());
+               out.println(singleVideo.getSnippet().getTitle());
                out.println("<form action =\"xpAdd\" method=\"POST\">");
                out.println("<a href=\"https://www.youtube.com/watch?v=" + videoName + "\">");
                out.println("<input type =\"image\" src=\"" + thumbnail.getUrl() + "\">");
                //out.println("<img src=\"" + thumbnail.getUrl() + "\">");
                out.println("</a>");
                out.println("</form>");
-               out.println("\n-------------------------------------------------------------\n");
                out.println("</p>"); 
               
             
