@@ -36,7 +36,7 @@ public class xpAdd extends HttpServlet {
         //HttpSession session = request.getSession();
         
         //String videoName = (String)session.getAttribute("videoName");
-        
+        // ADD EXPERIENCE HERE
         response.sendRedirect("https://google.com");
       
     }
