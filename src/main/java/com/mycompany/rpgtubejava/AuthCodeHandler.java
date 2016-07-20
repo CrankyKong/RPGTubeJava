@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,17 +17,20 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AuthCodeHandler", urlPatterns = {"/AuthCodeHandler"})
 public class AuthCodeHandler extends HttpServlet {
 
+    @EJB
+    private SessionHandler sessionHandler;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
         String authCode = (String)request.getParameter("code");
 
         if (authCode != null) {
-            // TODO: parse this JSON and use it for something useful...
-            out.println(requestToken(authCode));
+            sessionHandler.putStringVar("authCode", authCode);
+	    response.sendRedirect("index.jsp");
         } else {
-            response.sendRedirect("SignIn");
-        }  
+            out.println("You must accept the API request!");
+        }
     }
 
     private static String requestToken(String authCode) {

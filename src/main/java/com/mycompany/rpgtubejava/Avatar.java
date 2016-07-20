@@ -1,6 +1,5 @@
 package com.mycompany.rpgtubejava;
 
-
 import com.mycompany.rpgtubejava.Item;
 import java.util.List;
 

@@ -188,7 +188,5 @@ public class vidSearch extends HttpServlet {
         }
         out.println("</body>");
         out.println("</html>");
-     
      }
-    
 }

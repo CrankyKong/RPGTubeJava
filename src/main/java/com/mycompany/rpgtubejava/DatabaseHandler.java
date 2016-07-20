@@ -30,8 +30,8 @@ public class DatabaseHandler {
    static final String DB_URL = "jdbc:mysql://localhost/rpgtube";
 
    //  Database credentials
-   static final String USER = "logan";
-   static final String PASS = "pass";
+   static final String USER = "root";
+   static final String PASS = "abcde1";
    
    
    public Item getItem(int id) throws SQLException, ClassNotFoundException{
@@ -106,36 +106,50 @@ public class DatabaseHandler {
        return avatar;
    }
    
-   public String getPassword(String username) throws ClassNotFoundException, SQLException{
-       Class.forName("com.mysql.jdbc.Driver");
-       Connection conn = null;
-       Statement stmt = null;
+   public String getPassword(String username) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Connection conn = null;
+        Statement stmt = null;
         try {
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-	//STEP 4: Execute a query
-	System.out.println("Creating statement...");
-	stmt = (Statement) conn.createStatement();
-	String sql;
-	sql = "SELECT password FROM user where username = '" + username + "';";
+        try {
+            //STEP 4: Execute a query
+            System.out.println("Creating statement...");
+            stmt = (Statement) conn.createStatement();
+            String sql;
+            sql = "SELECT password FROM user where username = '" + username + "';";
 
-	ResultSet rs = stmt.executeQuery(sql);
-        String password = null;
-        
-        while(rs.next()){
-	   //Retrieve by column name
-	   password = rs.getString("password");
-	   
-	}
-        
-        rs.close();
-	stmt.close();
-	conn.close();
-       
-       return password;
+            ResultSet rs = stmt.executeQuery(sql);
+            String password = null;
+
+            while(rs.next()){
+               //Retrieve by column name
+               password = rs.getString("password");
+
+            }
+
+            return password;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return "";
    }
     
 }
