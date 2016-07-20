@@ -3,6 +3,8 @@
     Created on : Jul 19, 2016, 5:55:03 PM
     Author     : PADEN
 --%>
+<%@page import="com.mycompany.rpgtubejava.Item"%>
+<%@page import="com.mycompany.rpgtubejava.DatabaseHandler"%>
 <%@page import="com.mycompany.rpgtubejava.NavBar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,5 +27,11 @@
 		<li><a href="">Links</a>
 	    </ul>
 	</div>
+        
+        <% DatabaseHandler db = new DatabaseHandler();
+       Item item = new Item();
+       db.getItem(1).display();
+       //item.display();
+       %>
     </body>
 </html>

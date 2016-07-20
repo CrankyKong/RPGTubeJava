@@ -14,9 +14,10 @@
     <body>
 	<h3>RPGTube Log In</h3>
         <form action="ValidateLogin" method="POST">
-	    Username: <input type="text" name="username" value="test"><br/>
-	    Password: <input type="password" name="password" value="test"><br/>
+	    Username: <input type="text" name="username" value="pdawg"><br/>
+	    Password: <input type="password" name="password" value="abc"><br/>
 	    <button type="submit">Log In</button>
 	</form>
+        <a href="signup.jsp">Not registered? Sign Up Here</a><br/>
     </body>
 </html>
