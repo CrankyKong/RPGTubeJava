@@ -16,7 +16,7 @@ public class EntryPoint extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	if (sessionHandler.loggedIn()) {
-	    response.sendRedirect("index.html");
+	    response.sendRedirect("index.jsp");
 	} else {
 	    response.sendRedirect("login.jsp");
 	}

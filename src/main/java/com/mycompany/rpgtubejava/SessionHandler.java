@@ -1,16 +1,17 @@
 package com.mycompany.rpgtubejava;
 
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Startup
 @Singleton
 public class SessionHandler {
     private HttpSession session;
+    private final Map<String, String> stringVariables;
     private String username;
     private String userId;
     private String password;
@@ -18,8 +19,9 @@ public class SessionHandler {
 
     public SessionHandler() {
 	this.username = "";
-	this.userId = "";
 	this.session = null;
+	this.userId = "";
+	this.stringVariables = new HashMap<>();
 	this.loggedIn = false;
     }
 
@@ -29,6 +31,14 @@ public class SessionHandler {
 
     public boolean loggedIn() {
 	return this.loggedIn;
+    }
+
+    public void putStringVar(String key, String value) {
+	stringVariables.put(key, value);
+    }
+    
+    public String getStringVar(String key) {
+	return stringVariables.get(key);
     }
 
     public void setUsername(String username) {

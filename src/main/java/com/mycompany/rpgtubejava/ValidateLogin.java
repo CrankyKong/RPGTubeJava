@@ -19,7 +19,13 @@ public class ValidateLogin extends HttpServlet {
 	String password = (String)request.getParameter("password");
 
 	if (sessionHandler.logIn(username, password)) {
-	    response.sendRedirect("index.html");
+	    String getAccessTokenUri = "https://accounts.google.com/o/oauth2/auth?"
+		+ "client_id=725111314423-hfjs0q1u560ed56kni6hmirve53qk7fp.apps.googleusercontent.com"
+		+ "&redirect_uri=http://localhost:8080/RPGTubeJava/AuthCodeHandler"
+		+ "&response_type=code"
+		+ "&scope=https://www.googleapis.com/auth/youtube&state";
+
+	    response.sendRedirect(getAccessTokenUri);
 	} else {
 	    response.sendRedirect("login.jsp");
 	}

@@ -26,13 +26,11 @@ public class AuthCodeHandler extends HttpServlet {
         String authCode = (String)request.getParameter("code");
 
         if (authCode != null) {
-            // TODO: parse this JSON and use it for something useful...
-            out.println(requestToken(authCode));
+            sessionHandler.putStringVar("authCode", authCode);
+	    response.sendRedirect("index.jsp");
         } else {
-            response.sendRedirect("SignIn");
+            out.println("You must accept the API request!");
         }
-
-	sessionHandler.dump(out);
     }
 
     private static String requestToken(String authCode) {
