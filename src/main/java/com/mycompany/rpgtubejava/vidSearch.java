@@ -45,7 +45,7 @@ public class vidSearch extends HttpServlet {
 
     private static YouTube youtube;
 
- private static final long NOFV = 10;
+ private static final long NOFV = 25;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -188,12 +188,11 @@ public class vidSearch extends HttpServlet {
                 session.setAttribute("videoName", videoName);
                out.println("<br>");
                out.println("<br>");
-               
                out.println(singleVideo.getSnippet().getTitle());
                out.println("<form action =\"xpAdd\" method=\"POST\">");
-               out.println("<a href=\"https://www.youtube.com/watch?v=" + videoName + "\">");
+               out.println("<a href=\"https://www.youtube.com/watch?v=" + videoName + "\" target=\"_blank\" onclick=\"window.open(\'xpAdd\');\">");
                out.println("<input type =\"image\" src=\"" + thumbnail.getUrl() + "\">");
-               //out.println("<img src=\"" + thumbnail.getUrl() + "\">");
+               //out.println("<img class=\"img-responsive\" src=\"" + thumbnail.getUrl() + "\">");
                out.println("</a>");
                out.println("</form>");
                out.println("</p>"); 
