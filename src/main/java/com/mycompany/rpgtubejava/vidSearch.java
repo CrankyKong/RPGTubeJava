@@ -190,8 +190,8 @@ public class vidSearch extends HttpServlet {
                out.println("<br>");
                out.println(singleVideo.getSnippet().getTitle());
                out.println("<form action =\"xpAdd\" method=\"POST\">");
-               out.println("<a href=\"https://www.youtube.com/watch?v=" + videoName + "\" target=\"_blank\" onclick=\"window.open(\'xpAdd\');\">");
-               out.println("<input type =\"image\" src=\"" + thumbnail.getUrl() + "\">");
+               out.println("<a href=\"https://www.youtube.com/watch?v=" + videoName + "\">");
+               out.println("<input type =\"image\" src=\"" + thumbnail.getUrl() + "\"></input>");
                //out.println("<img class=\"img-responsive\" src=\"" + thumbnail.getUrl() + "\">");
                out.println("</a>");
                out.println("</form>");
